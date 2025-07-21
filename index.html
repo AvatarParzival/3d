@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEVATE | Premium Streetwear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at center, #4a1d96 0%, #1e1b4b 70%, #111827 100%);
+        }
+        
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-width: 300px;
+            min-height: 300px;
+            border-radius: 12px;
+
+        }
+        
+        canvas {
+            background: transparent !important;
+
+        }
+        
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        .nav-link:hover::after {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #8b5cf6;
+            margin: 0 auto;
+            margin-top: 2px;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        .scroll-down {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .marquee {
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-sm border-b border-gray-800 transition-transform duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold tracking-tighter">ELEVATE</span>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#" class="nav-link text-sm font-medium uppercase tracking-wider">Home</a>
+                        <a href="#" class="nav-link text-sm font-medium uppercase tracking-wider">Shop</a>
+                        <a href="#" class="nav-link text-sm font-medium uppercase tracking-wider">Collections</a>
+                        <a href="#" class="nav-link text-sm font-medium uppercase tracking-wider">About</a>
+                        <a href="#" class="nav-link text-sm font-medium uppercase tracking-wider">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-full hover:bg-gray-100">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="p-2 rounded-full hover:bg-gray-100">
+                        <i class="fas fa-shopping-bag"></i>
+                    </button>
+                    <button class="md:hidden p-2 rounded-full hover:bg-gray-100">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">Elevate Your <span class="text-indigo-600">Streetwear</span> Game</h1>
+                    <p class="text-lg text-white-600 mb-8 max-w-lg">Premium quality meets urban aesthetics. Our limited edition collection is crafted for those who demand excellence in every stitch.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-purple-600 text-white px-8 py-3 rounded-full font-medium hover:bg-purple-700 transition duration-300">Shop Now</a>
+                        <a href="#" class="border-2 border-purple-600 px-8 py-3 rounded-full font-medium hover:bg-purple-600 hover:text-white transition duration-300">View Collection</a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 h-96 md:h-[500px] relative">
+                    <div id="shirt-viewer" class="canvas-container w-full h-full"></div>
+                    <div class="absolute bottom-4 left-0 right-0 text-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Marquee -->
+    <div class="bg-purple-900/80 text-white py-3 overflow-hidden border-y border-purple-800/50">
+        <div class="flex whitespace-nowrap">
+            <div class="marquee flex items-center">
+                <span class="text-xl mx-8">NEW COLLECTION DROPPING SOON</span>
+                <span class="text-xl mx-8">FREE SHIPPING ON ORDERS OVER PKR 1000</span>
+                <span class="text-xl mx-8">LIMITED STOCK AVAILABLE</span>
+                <span class="text-xl mx-8">NEW COLLECTION DROPPING SOON</span>
+                <span class="text-xl mx-8">FREE SHIPPING ON ORDERS OVER PKR 1000</span>
+                <span class="text-xl mx-8">LIMITED STOCK AVAILABLE</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Featured Products -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Featured Collection</h2>
+                <p class="text-white-600 max-w-2xl mx-auto">Discover our signature pieces that define urban elegance</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+                <!-- Product 1 -->
+                <div class="product-card group relative overflow-hidden rounded-lg bg-gray-800 border border-gray-700">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg">
+                        <img src="./Dupatta1.png" alt="Floral Dupatta" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 mt-4 flex justify-between">
+                        <div>
+                            <h3 class="text-lg font-medium text-white">RANG-E-HUNAR</h3>
+                            <p class="text-gray-400 text-sm">SIGNATURE</p>
+                        </div>
+                        <p class="text-lg font-medium text-white">PKR 2550</p>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-gradient-to-t from-purple-900/70 via-transparent to-transparent flex items-end justify-center opacity-0 transition duration-300 pb-8">
+                        <button class="bg-white text-purple-900 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-200 transform hover:scale-105">Quick View</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card group relative overflow-hidden rounded-lg bg-gray-800 border border-gray-700">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg">
+                        <img src="./Serene Elegance in Traditional Wear.png" alt="Floral Dupatta" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 mt-4 flex justify-between">
+                        <div>
+                            <h3 class="text-lg font-medium text-white">KAPTAN</h3>
+                            <p class="text-gray-400 text-sm">OUR LEADER</p>
+                        </div>
+                        <p class="text-lg font-medium text-white">PKR 2550</p>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-gradient-to-t from-purple-900/70 via-transparent to-transparent flex items-end justify-center opacity-0 transition duration-300 pb-8">
+                        <button class="bg-white text-purple-900 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-200 transform hover:scale-105">Quick View</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card group relative overflow-hidden rounded-lg bg-gray-800 border border-gray-700">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg">
+                        <img src="./Radiance in Beige and Blooms.png" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 mt-4 flex justify-between">
+                        <div>
+                            <h3 class="text-lg font-medium text-white">GO AWAY</h3>
+                            <p class="text-gray-400 text-sm">POLITE NO!</p>
+                        </div>
+                        <p class="text-lg font-medium text-white">PKR 2550</p>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-gradient-to-t from-purple-900/70 via-transparent to-transparent flex items-end justify-center opacity-0 transition duration-300 pb-8">
+                        <button class="bg-white text-purple-900 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-200 transform hover:scale-105">Quick View</button>
+                    </div>
+                </div>
+
+
+            
+             <!-- Marquee 
+<div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-white transition duration-300">View All Products</a>
+            </div> -->
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="py-16 bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="About Us" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl font-bold mb-6">Our Story</h2>
+                    <p class="text-white-600 mb-6">Founded in 2025, ELEVATE was born from a passion for creating streetwear that doesn't compromise on quality or ethics. We believe in slow fashion - pieces that last beyond trends.</p>
+                    <p class="text-white-600 mb-8">Every garment is crafted with attention to detail, using sustainable materials and ethical manufacturing processes. We're not just selling clothes - we're promoting a lifestyle.</p>
+                    <a href="#" class="inline-block border-2 border-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-white transition duration-300">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="py-16 bg-black text-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Join The Movement</h2>
+            <p class="text-gray-300 mb-8">Subscribe to our newsletter for exclusive drops, early access, and 10% off your first order.</p>
+            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full font-medium transition duration-300">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">ELEVATE</h3>
+                    <p class="text-white-600 mb-4">Redefining streetwear with premium quality and sustainable practices.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white-500 text-sm hover:text-purple-600"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white-500 text-sm hover:text-purple-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white-500 text-sm hover:text-purple-600"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white-500 text-sm hover:text-purple-600"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">All Products</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">New Arrivals</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">Best Sellers</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">Sale</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">About</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">Our Story</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">Sustainability</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">Careers</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Help</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">Contact Us</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600"Shipping & Returns</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">Size Guide</a></li>
+                        <li><a href="#" class="text-white-500 text-sm hover:text-purple-600">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-white-500 text-sm mb-4 md:mb-0">© 2023 ELEVATE. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white-500 text-sm hover:text-purple-600">Privacy Policy</a>
+                    <a href="#" class="text-white-500 text-sm hover:text-purple-600">Terms of Service</a>
+                    <a href="#" class="text-white-500 text-sm hover:text-purple-600">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+#8b5cf6
+    <script>
+        const nav = document.getElementById('main-nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                // At the very top of the page
+                nav.style.transform = 'translateY(0)';
+                nav.style.transition = 'transform 0.3s ease-out';
+            } else {
+                // Anywhere else on the page
+                nav.style.transform = 'translateY(-100%)';
+                nav.style.transition = 'transform 0.3s ease-in';
+            }
+        });
+    </script>
+    
+    <!-- Load Three.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        // Make OrbitControls globally available
+        const OrbitControls = THREE.OrbitControls;
+const GLTFLoader = THREE.GLTFLoader;
+    
+        // Scene setup
+        const scene = new THREE.Scene();
+        scene.background = null;
+        
+        // Camera setup
+        const camera = new THREE.PerspectiveCamera(
+            35,
+            document.getElementById('shirt-viewer').clientWidth / document.getElementById('shirt-viewer').clientHeight,
+            0.1,
+            1000
+        );
+        
+        // Position camera for ideal 3/4 view
+        camera.position.set(0, 0, 3);
+        camera.lookAt(0, 0.3, 0);
+        
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: true,
+            alpha: true,
+            preserveDrawingBuffer: true // Helps with transparency
+        });
+        renderer.setSize(
+            document.getElementById('shirt-viewer').clientWidth,
+            document.getElementById('shirt-viewer').clientHeight
+        );
+        document.getElementById('shirt-viewer').appendChild(renderer.domElement);
+        
+        // Lighting
+        const light1 = new THREE.DirectionalLight(0xffffff, 1);
+        light1.position.set(1, 1, 1);
+        scene.add(light1);
+        
+        const light2 = new THREE.DirectionalLight(0xffffff, 0.5);
+        light2.position.set(-1, 0.5, -1);
+        scene.add(light2);
+        
+        scene.add(new THREE.AmbientLight(0x404040));
+        
+        // Controls - Disabled by default but can be enabled by user interaction
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enabled = false; // Start with controls disabled
+	controls.enableZoom = false; // Disable zooming
+	controls.enableRotate = true;
+        controls.minPolarAngle = Math.PI/2; // Restrict to horizontal rotation
+        controls.maxPolarAngle = Math.PI/2; // Restrict to horizontal rotation
+
+        
+        // Enable controls on mouse enter
+        document.getElementById('shirt-viewer').addEventListener('mouseenter', () => {
+            controls.enabled = true;
+        });
+        
+
+        // Disable controls on mouse leave
+        document.getElementById('shirt-viewer').addEventListener('mouseleave', () => {
+            controls.enabled = false;
+        });
+        
+        // Model reference
+        let shirtModel;
+        
+        // Load model
+        const loader = new GLTFLoader();
+        loader.load(
+            'Models/shirt.glb',
+            (gltf) => {
+                shirtModel = gltf.scene;
+                shirtModel.scale.set(2.3, 2.3, 2.3);
+                shirtModel.position.set(0, 0, 0);
+                scene.add(shirtModel);
+		shirtModel.position.y += -2.9;
+
+                
+                // Start animation
+                animate();
+            },
+            undefined,
+            (error) => {
+                console.error('Error loading model:', error);
+            }
+        );
+        
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            if (shirtModel) {
+                shirtModel.rotation.y += 0.005; // Slow rotation when not interacting
+            }
+            
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = document.getElementById('shirt-viewer').clientWidth / document.getElementById('shirt-viewer').clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(
+                document.getElementById('shirt-viewer').clientWidth,
+                document.getElementById('shirt-viewer').clientHeight
+            );
+        });
+//https://huggingface.co/spaces/AvatarParzival/3d1/
+    </script>
+</body>
+</html>
