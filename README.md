@@ -8,10 +8,10 @@
 - [Tech Stack](#-tech-stack)  
 - [Getting Started](#-getting-started)  
 - [Features](#-features)  
-- [Files Included](#-files-included)  
+- [Files Included](#-project-structure)  
 - [Deployment](#-deployment)  
 - [License](#-license)  
-- [Author](#author)
+- [Credits](#-credits)
 
 ---
 
@@ -107,14 +107,4 @@ This project is open-source and available under the [MIT License](./LICENSE). Fe
 **Author**: AvatarParzival  
 - GitHub: [@AvatarParzival](https://github.com/AvatarParzival)
 
----
 
-### Table of Contents  
-- [Overview](#overview)  
-- [Tech Stack](#⚙️-tech-stack)  
-- [Getting Started](#🚀-getting-started)  
-- [Features](#🎯-features)  
-- [Project Structure](#🧩-project-structure)  
-- [Usage & Deployment Tips](#🛠️-usage--deployment-tips)  
-- [License](#📄-license)  
-- [Credits](#👤-credits)
