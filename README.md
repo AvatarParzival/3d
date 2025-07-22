@@ -17,6 +17,7 @@
 
 ## 🎨 Overview  
 This project is a single-page web app that renders a **rotatable, interactively viewable 3D shirt model**. Built using **React**, with **Three.js** for 3D visualization, along with standard **HTML** and **CSS** for layout and styling, it delivers a seamless and engaging user experience.
+
 🔗 **Live Demo**: [https://avatarparzival.github.io/3d/](https://avatarparzival.github.io/3d/)
 
 ---
