@@ -4,14 +4,14 @@
 ---
 
 ### Table of Contents  
-- [Overview](#-overview)  
-- [Tech Stack](#-tech-stack)  
-- [Getting Started](#-getting-started)  
-- [Features](#-features)  
-- [Files Included](#-project-structure)  
-- [Deployment](#-deployment)  
-- [License](#-license)  
-- [Credits](#-credits)
+- [🎨 Overview ](#-overview)  
+- [🧰 Tech Stack ](#-tech-stack)  
+- [🚀 Getting Started](#-getting-started)  
+- [🎯 Features  ](#-features)  
+- [🧩 Project Structure](#-project-structure)  
+- [📤 Deployment](#-deployment)  
+- [📄 License ](#-license)  
+- [👤 Credits  ](#-credits)
 
 ---
 
